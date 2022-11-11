@@ -9,7 +9,7 @@ package principal;
  *
  * @author Frankz
  */
-public class TestGestorCitasMedicas {
+public class main {
 
     /**
      * @param args the command line arguments
