@@ -37,6 +37,47 @@ public class CitasPersistencia {
             }
         }
     }
+    
+    public ArrayList<Cita> obtenerTodasLasCitas() {
+        FileReader fileReader = null;
+        BufferedReader br = null;
+        
+        ArrayList<Cita> citas = new ArrayList<Cita>();
+
+        GestorMedicos gestorMedicos = new GestorMedicos();
+        GestorPacientes gestorPacientes = new GestorPacientes();
+        try {
+            fileReader = new FileReader(this.file);
+            br = new BufferedReader(fileReader);
+            String linea = br.readLine();
+            Cita cita;
+            while (linea != null) {
+                String idCitaEncontrado = linea.split(",")[0];
+                String[] datosCita = linea.split(",");
+                cita = new Cita(datosCita[0], LocalDateTime.parse(datosCita[1]), datosCita[2], datosCita[3], gestorMedicos.obtenerMedico(datosCita[4]), gestorPacientes.obtenerPaciente(datosCita[5]));
+                citas.add(cita);
+                linea = br.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return citas;
+    }
 
     // retorna paciente o null, si es null no se encuentra el paciente
     public Cita obtenerCita(String idCita) {

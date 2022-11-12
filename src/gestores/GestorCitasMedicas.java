@@ -5,6 +5,7 @@
  */
 package gestores;
 
+import java.util.ArrayList;
 import persistencia.CitasPersistencia;
 import principal.Cita;
 
@@ -13,6 +14,11 @@ import principal.Cita;
  * @author Frankz
  */
 public class GestorCitasMedicas {
+    
+    public ArrayList<Cita> obtenerTodasLasCitas() {
+        CitasPersistencia citaP = new CitasPersistencia();
+        return citaP.obtenerTodasLasCitas();
+    }
 
     public Cita obtenerCita(String idCita) {
         CitasPersistencia citaP = new CitasPersistencia();

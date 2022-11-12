@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -84,11 +85,12 @@ public class main {
         //Cita cita = gestorCitas.obtenerCita("2613618");
         //System.out.println(cita.toString());
         //String message = gestorCitas.eliminarCita("1953138");
-        //System.out.println(message);
+        //System.out.println(message);        
         
-        
-        
-        
+        //ArrayList<Cita> citas = gestorCitas.obtenerTodasLasCitas();
+        //for (Cita c: citas) {
+        //    System.out.println(c.toString());
+        //}                        
     }
     
 }
