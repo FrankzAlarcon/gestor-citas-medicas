@@ -14,6 +14,7 @@ import principal.Cita;
  * @author Frankz
  */
 public class GestorCitasMedicas {
+    private Cita cita;
     
     public ArrayList<Cita> obtenerTodasLasCitas() {
         CitasPersistencia citaP = new CitasPersistencia();

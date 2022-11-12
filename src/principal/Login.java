@@ -17,7 +17,7 @@ public class Login {
     private String contrasenia;
     private String tipoUsuario;
     
-    private MedicosPersistencia medicoPersistencia = new MedicosPersistencia();
+    private MedicosPersistencia medicoPersistencia = new MedicosPersistencia();        
 
       
     public void validarCredenciales(){

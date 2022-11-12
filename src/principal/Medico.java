@@ -6,6 +6,7 @@
 package principal;
 
 import gestores.GestorCitasMedicas;
+import java.util.ArrayList;
 import persistencia.MedicosPersistencia;
 
 /**
@@ -30,6 +31,7 @@ public class Medico {
         this.correoElectronico = correoElectronico;
         this.contrasenia = contrasenia;
         this.medicoPersistencia = new MedicosPersistencia();
+        this.gestorCitas = new GestorCitasMedicas();
     }
     /*public Medico(String cedula, String nombre, String nombreUsuario, int edad, String correoElectronico, String contrasenia) {
         this.cedula = cedula;
@@ -41,18 +43,16 @@ public class Medico {
         this.medicoPersistencia = new MedicosPersistencia();
     }*/
     
+    public ArrayList<Cita> listarTodasLasCitas() {
+        return this.gestorCitas.obtenerTodasLasCitas();
+    }
+    
     public void registrar() {
         this.medicoPersistencia.registrarMedico(this);
     }
     public void eliminar() {
         this.medicoPersistencia.eliminarMedico(this);
-    }
-
-    public void accederGestorCitasMedicas(){
-        this.gestorCitas = new GestorCitasMedicas();
-    }
-
-    
+    }    
     
     public String getCedula() {
         return cedula;

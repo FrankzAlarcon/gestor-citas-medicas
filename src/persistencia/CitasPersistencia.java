@@ -24,13 +24,13 @@ import principal.Cita;
  */
 public class CitasPersistencia {
 
-    private File file;
+    private File archivo;
 
     public CitasPersistencia() {
-        this.file = new File("db/citas.txt");
-        if (!this.file.exists()) {
+        this.archivo = new File("db/citas.txt");
+        if (!this.archivo.exists()) {
             try {
-                this.file.createNewFile();
+                this.archivo.createNewFile();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 System.exit(0);
@@ -47,7 +47,7 @@ public class CitasPersistencia {
         GestorMedicos gestorMedicos = new GestorMedicos();
         GestorPacientes gestorPacientes = new GestorPacientes();
         try {
-            fileReader = new FileReader(this.file);
+            fileReader = new FileReader(this.archivo);
             br = new BufferedReader(fileReader);
             String linea = br.readLine();
             Cita cita;
@@ -88,7 +88,7 @@ public class CitasPersistencia {
         GestorMedicos gestorMedicos = new GestorMedicos();
         GestorPacientes gestorPacientes = new GestorPacientes();
         try {
-            fileReader = new FileReader(this.file);
+            fileReader = new FileReader(this.archivo);
             br = new BufferedReader(fileReader);
             String linea = br.readLine();
             while (linea != null) {
@@ -126,7 +126,7 @@ public class CitasPersistencia {
         BufferedWriter bw = null;
         String linea = cita.toString();
         try {
-            fileWriter = new FileWriter(this.file, true);
+            fileWriter = new FileWriter(this.archivo, true);
             bw = new BufferedWriter(fileWriter);
 
             bw.write(linea);
@@ -159,7 +159,7 @@ public class CitasPersistencia {
 
         ArrayList<Cita> citas = new ArrayList<Cita>();
         try {
-            fileReader = new FileReader(this.file);
+            fileReader = new FileReader(this.archivo);
             br = new BufferedReader(fileReader);
 
             String linea = br.readLine();
@@ -174,7 +174,7 @@ public class CitasPersistencia {
                 linea = br.readLine();
             }
             
-            fileWriter = new FileWriter(this.file);
+            fileWriter = new FileWriter(this.archivo);
             bw = new BufferedWriter(fileWriter);
             
             System.out.println("Citas");

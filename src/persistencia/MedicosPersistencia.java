@@ -20,13 +20,13 @@ import principal.Medico;
  * @author Frankz
  */
 public class MedicosPersistencia {
-    private File file;
+    private File archivo;
     
     public MedicosPersistencia() {
-        this.file = new File("db/medicos.txt");
-        if (!this.file.exists()) {
+        this.archivo = new File("db/medicos.txt");
+        if (!this.archivo.exists()) {
             try {
-                this.file.createNewFile();
+                this.archivo.createNewFile();
             } catch(IOException ioe) {
                 ioe.printStackTrace();
                 System.exit(0);
@@ -40,7 +40,7 @@ public class MedicosPersistencia {
         BufferedReader br = null;
         Medico medico = null;
         try {
-            fileReader =new FileReader(this.file);
+            fileReader =new FileReader(this.archivo);
             br = new BufferedReader(fileReader);
             String linea = br.readLine();
             while (linea != null) {
@@ -78,7 +78,7 @@ public class MedicosPersistencia {
         BufferedWriter bw = null;
         String linea = medico.toString();
         try {            
-            fileWriter = new FileWriter(this.file, true);
+            fileWriter = new FileWriter(this.archivo, true);
             bw = new BufferedWriter(fileWriter);
             
             bw.write(linea);
@@ -111,7 +111,7 @@ public class MedicosPersistencia {
 
         ArrayList<Medico> medicos = new ArrayList<Medico>();
         try {
-            fileReader = new FileReader(this.file);
+            fileReader = new FileReader(this.archivo);
             br = new BufferedReader(fileReader);
 
             String linea = br.readLine();
@@ -126,7 +126,7 @@ public class MedicosPersistencia {
                 linea = br.readLine();
             }
             
-            fileWriter = new FileWriter(this.file);
+            fileWriter = new FileWriter(this.archivo);
             bw = new BufferedWriter(fileWriter);
             
             for (Medico m: medicos) {

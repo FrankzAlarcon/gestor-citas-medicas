@@ -16,10 +16,6 @@ public class GestorPacientes {
 
     private Paciente paciente;
 
-    public GestorPacientes() {
-        this.paciente = new Paciente();
-    }
-
     public Paciente obtenerPaciente(String cedula) {
         PacientePersistencia pacienteP = new PacientePersistencia();
         Paciente p = pacienteP.obtenerPaciente(cedula);
