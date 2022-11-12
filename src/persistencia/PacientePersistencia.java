@@ -20,27 +20,28 @@ import java.util.ArrayList;
  * @author Frankz
  */
 public class PacientePersistencia {
+
     private File file;
-    
+
     public PacientePersistencia() {
         this.file = new File("db/pacientes.txt");
         if (!this.file.exists()) {
             try {
                 this.file.createNewFile();
-            } catch(IOException ioe) {
+            } catch (IOException ioe) {
                 ioe.printStackTrace();
                 System.exit(0);
             }
-        }             
+        }
     }
-    
+
     // retorna paciente o null, si es null no se encuentra el paciente
-    public Paciente obtenerPaciente(String cedula) {        
-        FileReader fileReader =  null;
+    public Paciente obtenerPaciente(String cedula) {
+        FileReader fileReader = null;
         BufferedReader br = null;
         Paciente paciente = null;
         try {
-            fileReader =new FileReader(this.file);
+            fileReader = new FileReader(this.file);
             br = new BufferedReader(fileReader);
             String linea = br.readLine();
             while (linea != null) {
@@ -51,7 +52,7 @@ public class PacientePersistencia {
                     return paciente;
                 }
                 linea = br.readLine();
-            }            
+            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (Exception e) {
@@ -59,20 +60,20 @@ public class PacientePersistencia {
         } finally {
             try {
                 if (fileReader != null) {
-                fileReader.close();   
-            }
-            if (br != null) {
-                br.close();    
-            }  
-            } catch(IOException ioe) {
+                    fileReader.close();
+                }
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException ioe) {
                 ioe.printStackTrace();
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-            }                                 
+            }
         }
         return paciente;
     }
-    
+
     public void registrarPaciente(Paciente paciente) {
         FileWriter fileWriter = null;
         BufferedWriter bw = null;
@@ -80,14 +81,14 @@ public class PacientePersistencia {
         try {
             fileWriter = new FileWriter(this.file, true);
             bw = new BufferedWriter(fileWriter);
-            
+
             bw.write(linea);
             bw.newLine();
             bw.close();
-            
-        } catch(IOException ioe) {
+
+        } catch (IOException ioe) {
             ioe.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
@@ -95,12 +96,69 @@ public class PacientePersistencia {
                     fileWriter.close();
                 }
                 if (bw != null) {
-                    bw.close();   
-                }                
-            } catch(Exception e2){
+                    bw.close();
+                }
+            } catch (Exception e2) {
                 e2.printStackTrace();
-            }            
-        }   
+            }
+        }
     }
-    
+
+    public void eliminarPaciente(Paciente paciente) {
+        FileReader fileReader = null;
+        BufferedReader br = null;
+
+        FileWriter fileWriter = null;
+        BufferedWriter bw = null;
+
+        ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+        try {
+            fileReader = new FileReader(this.file);
+            br = new BufferedReader(fileReader);
+
+            String linea = br.readLine();
+            Paciente pacienteEncontrado;
+            String[] datosPaciente;
+            while (linea != null) {
+                datosPaciente = linea.split(",");
+                if (!paciente.getCedula().equals(datosPaciente[0])) {
+                    pacienteEncontrado = new Paciente(datosPaciente[0], datosPaciente[1], Integer.parseInt(datosPaciente[2]), datosPaciente[3]);
+                    pacientes.add(pacienteEncontrado);
+                }
+                linea = br.readLine();
+            }
+            
+            fileWriter = new FileWriter(this.file);
+            bw = new BufferedWriter(fileWriter);
+            
+            for (Paciente p: pacientes) {                
+                bw.write(p.toString());
+                bw.newLine();
+            }
+            bw.close();
+            
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fileWriter != null) {
+                    fileWriter.close();
+                }
+                if (bw != null) {
+                    bw.close();
+                }
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+                if (br != null) {
+                    br.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+    }
+
 }

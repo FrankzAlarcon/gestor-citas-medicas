@@ -5,17 +5,19 @@
  */
 package principal;
 
+import persistencia.MedicosPersistencia;
+
 /**
  *
  * @author Frankz
  */
 public class Login {
     
-    private String usuario;
-    private Sring contrasenia;
+    private String usuario; // El usuario sera la cedula
+    private String contrasenia;
     private String tipoUsuario;
     
-    private MedicoPersistencia medicoPersistencia = new MedicoPersistencia();
+    private MedicosPersistencia medicoPersistencia = new MedicosPersistencia();
 
       
     public void validarCredenciales(){
@@ -25,11 +27,11 @@ public class Login {
             if(tipoUsuario.equals("")){
                 System.out.println("Eliga el tipo de usuario");
             }else{
-                if(usuario.equals(medicoPersistencia.nombreUsuario) && contrasenia.equals(medicoPersistencia.contrasenia)){
+                /*if(usuario.equals(medicoPersistencia.nombreUsuario) && contrasenia.equals(medicoPersistencia.contrasenia)){
                     System.out.println("Acceso Exitoso");
                 }else{
                     System.out.println("Acceso Denegado");
-                }
+                }*/
             }
         }
     }

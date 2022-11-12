@@ -5,6 +5,10 @@
  */
 package principal;
 
+import gestores.GestorCitasMedicas;
+import gestores.GestorMedicos;
+import gestores.GestorPacientes;
+
 /**
  *
  * @author Frankz

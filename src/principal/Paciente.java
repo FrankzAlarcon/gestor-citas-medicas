@@ -15,7 +15,7 @@ public class Paciente {
     private String cedula;
     private String nombre;
     private int edad;
-    private int numHistoriaClinica;
+    //private int numHistoriaClinica;
     private String correoElectronico;
     private PacientePersistencia pacientePersistencia;
     
@@ -23,14 +23,21 @@ public class Paciente {
         this.pacientePersistencia = new PacientePersistencia();
     }
 
-    public Paciente(String cedula, String nombre, int edad, int numHistoriaClinica, String correoElectronico) {
+    public Paciente(String cedula, String nombre, int edad, String correoElectronico) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.edad = edad;        
+        this.correoElectronico = correoElectronico;
+        this.pacientePersistencia = new PacientePersistencia();
+    }
+    /*public Paciente(String cedula, String nombre, int edad, int numHistoriaClinica, String correoElectronico) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.edad = edad;
         this.numHistoriaClinica = numHistoriaClinica;
         this.correoElectronico = correoElectronico;
         this.pacientePersistencia = new PacientePersistencia();
-    }
+    }*/
         
     
     public void registrar() {
@@ -65,13 +72,13 @@ public class Paciente {
         this.edad = edad;
     }
 
-    public int getNumHistoriaClinica() {
+    /*public int getNumHistoriaClinica() {
         return numHistoriaClinica;
     }
 
     public void setNumHistoriaClinica(int numHistoriaClinica) {
         this.numHistoriaClinica = numHistoriaClinica;
-    }
+    }*/
 
     public String getCorreoElectronico() {
         return correoElectronico;

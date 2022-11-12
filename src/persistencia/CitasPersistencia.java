@@ -5,53 +5,60 @@
  */
 package persistencia;
 
+import gestores.GestorMedicos;
+import gestores.GestorPacientes;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import principal.Medico;
+import principal.Cita;
 
 /**
  *
  * @author Frankz
  */
-public class MedicosPersistencia {
+public class CitasPersistencia {
+
     private File file;
-    
-    public MedicosPersistencia() {
-        this.file = new File("db/medicos.txt");
+
+    public CitasPersistencia() {
+        this.file = new File("db/citas.txt");
         if (!this.file.exists()) {
             try {
                 this.file.createNewFile();
-            } catch(IOException ioe) {
+            } catch (IOException ioe) {
                 ioe.printStackTrace();
                 System.exit(0);
             }
-        }             
+        }
     }
-    
+
     // retorna paciente o null, si es null no se encuentra el paciente
-    public Medico obtenerMedico(String cedula) {        
-        FileReader fileReader =  null;
+    public Cita obtenerCita(String idCita) {
+        FileReader fileReader = null;
         BufferedReader br = null;
-        Medico medico = null;
+        Cita cita = null;
+
+        GestorMedicos gestorMedicos = new GestorMedicos();
+        GestorPacientes gestorPacientes = new GestorPacientes();
         try {
-            fileReader =new FileReader(this.file);
+            fileReader = new FileReader(this.file);
             br = new BufferedReader(fileReader);
             String linea = br.readLine();
             while (linea != null) {
-                String cedulaEncontrada = linea.split(",")[0];
-                if (cedulaEncontrada.equals(cedula)) {
-                    String[] datosPaciente = linea.split(",");
-                    medico = new Medico(datosPaciente[0], datosPaciente[1], Integer.parseInt(datosPaciente[2]), datosPaciente[3], datosPaciente[4]);
-                    return medico;
+                String idCitaEncontrado = linea.split(",")[0];
+                if (idCitaEncontrado.equals(idCita)) {
+                    String[] datosCita = linea.split(",");
+                    cita = new Cita(datosCita[0], LocalDateTime.parse(datosCita[1]), datosCita[2], datosCita[3], gestorMedicos.obtenerMedico(datosCita[4]), gestorPacientes.obtenerPaciente(datosCita[5]));
+                    return cita;
                 }
                 linea = br.readLine();
-            }            
+            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (Exception e) {
@@ -59,34 +66,34 @@ public class MedicosPersistencia {
         } finally {
             try {
                 if (fileReader != null) {
-                fileReader.close();   
-            }
-            if (br != null) {
-                br.close();    
-            }  
-            } catch(IOException ioe) {
+                    fileReader.close();
+                }
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException ioe) {
                 ioe.printStackTrace();
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-            }                                 
+            }
         }
-        return medico;
+        return cita;
     }
-    
-    public void registrarMedico(Medico medico) {
+
+    public void registrarCita(Cita cita) {
         FileWriter fileWriter = null;
         BufferedWriter bw = null;
-        String linea = medico.toString();
-        try {            
+        String linea = cita.toString();
+        try {
             fileWriter = new FileWriter(this.file, true);
             bw = new BufferedWriter(fileWriter);
-            
+
             bw.write(linea);
             bw.newLine();
             bw.close();
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
@@ -94,34 +101,34 @@ public class MedicosPersistencia {
                     fileWriter.close();
                 }
                 if (bw != null) {
-                    bw.close();   
+                    bw.close();
                 }
-            } catch(Exception e2){
+            } catch (Exception e2) {
                 e2.printStackTrace();
-            }          
-        }   
+            }
+        }
     }
 
-        public void eliminarMedico(Medico medicoAEliminar) {
+    public void eliminarCita(Cita citaAEliminar) {
         FileReader fileReader = null;
         BufferedReader br = null;
 
         FileWriter fileWriter = null;
         BufferedWriter bw = null;
 
-        ArrayList<Medico> medicos = new ArrayList<Medico>();
+        ArrayList<Cita> citas = new ArrayList<Cita>();
         try {
             fileReader = new FileReader(this.file);
             br = new BufferedReader(fileReader);
 
             String linea = br.readLine();
-            Medico medicoEncontrado;
-            String[] datosMedico;
+            Cita citaEncontrada;
+            String[] datosCita;
             while (linea != null) {
-                datosMedico = linea.split(",");
-                if (!medicoAEliminar.getCedula().equals(datosMedico[0])) {
-                    medicoEncontrado = new Medico(datosMedico[0], datosMedico[1], Integer.parseInt(datosMedico[2]), datosMedico[3], datosMedico[4]);
-                    medicos.add(medicoEncontrado);
+                datosCita = linea.split(",");
+                if (!citaAEliminar.getId().equals(datosCita[0])) {
+                    citaEncontrada = this.obtenerCita(datosCita[0]);
+                    citas.add(citaEncontrada);
                 }
                 linea = br.readLine();
             }
@@ -129,8 +136,10 @@ public class MedicosPersistencia {
             fileWriter = new FileWriter(this.file);
             bw = new BufferedWriter(fileWriter);
             
-            for (Medico m: medicos) {
-                bw.write(m.toString());
+            System.out.println("Citas");
+            for (Cita c: citas) {
+                System.out.println(c.toString());
+                bw.write(c.toString());
                 bw.newLine();
             }
             bw.close();

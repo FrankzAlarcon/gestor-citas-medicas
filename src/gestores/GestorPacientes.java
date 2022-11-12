@@ -13,19 +13,30 @@ import persistencia.PacientePersistencia;
  * @author Frankz
  */
 public class GestorPacientes {
+
     private Paciente paciente;
-    
+
     public GestorPacientes() {
-        this.paciente =  new Paciente();
+        this.paciente = new Paciente();
     }
-    
+
     public Paciente obtenerPaciente(String cedula) {
         PacientePersistencia pacienteP = new PacientePersistencia();
         Paciente p = pacienteP.obtenerPaciente(cedula);
         if (p == null) {
-            return null;            
+            return null;
         }
         return p;
     }
-    
+
+    public String eliminarPaciente(String cedula) {
+        PacientePersistencia pacienteP = new PacientePersistencia();
+        Paciente p = pacienteP.obtenerPaciente(cedula);
+        if (p == null) {
+            return "El usuario con cédula " + cedula + " no existe.";
+        }
+        p.eliminar();
+        return "Eliminado exitosamente.";
+    }
+
 }

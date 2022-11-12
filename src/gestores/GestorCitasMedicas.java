@@ -5,10 +5,32 @@
  */
 package gestores;
 
+import persistencia.CitasPersistencia;
+import principal.Cita;
+
 /**
  *
  * @author Frankz
  */
 public class GestorCitasMedicas {
-    
+
+    public Cita obtenerCita(String idCita) {
+        CitasPersistencia citaP = new CitasPersistencia();
+        Cita cita = citaP.obtenerCita(idCita);
+        if (cita == null) {
+            return null;
+        }
+        return cita;
+    }
+
+    public String eliminarCita(String idCita) {
+        CitasPersistencia citaP = new CitasPersistencia();
+        Cita cita = citaP.obtenerCita(idCita);
+        if (cita == null) {
+            return "El medico con cédula " + idCita + " no existe.";
+        }
+        System.out.println(cita.toString());
+        cita.cancelar();
+        return "Eliminado exitosamente.";
+    }
 }

@@ -15,7 +15,7 @@ import persistencia.MedicosPersistencia;
 public class Medico {
     private String cedula;
     private String nombre;
-    private String nombreUsuario;
+    //private String nombreUsuario;
     private int edad;
     private String correoElectronico;
     private String contrasenia;
@@ -23,7 +23,15 @@ public class Medico {
     private MedicosPersistencia medicoPersistencia;
     private GestorCitasMedicas gestorCitas;
 
-    public Medico(String cedula, String nombre, String nombreUsuario, int edad, String correoElectronico, String contrasenia) {
+    public Medico(String cedula, String nombre, int edad, String correoElectronico, String contrasenia) {
+        this.cedula = cedula;
+        this.nombre = nombre;        
+        this.edad = edad;
+        this.correoElectronico = correoElectronico;
+        this.contrasenia = contrasenia;
+        this.medicoPersistencia = new MedicosPersistencia();
+    }
+    /*public Medico(String cedula, String nombre, String nombreUsuario, int edad, String correoElectronico, String contrasenia) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
@@ -31,7 +39,7 @@ public class Medico {
         this.correoElectronico = correoElectronico;
         this.contrasenia = contrasenia;
         this.medicoPersistencia = new MedicosPersistencia();
-    }
+    }*/
     
     public void registrar() {
         this.medicoPersistencia.registrarMedico(this);
