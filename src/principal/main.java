@@ -90,7 +90,18 @@ public class main {
         //ArrayList<Cita> citas = gestorCitas.obtenerTodasLasCitas();
         //for (Cita c: citas) {
         //    System.out.println(c.toString());
-        //}                        
+        //}        
+        
+        
+        //Probando metodo de registro de medicos
+        //GestorMedicos gMedicos = new GestorMedicos();
+        //gMedicos.registrarMedico();
+        //Probando meotod de registro de pacientes
+        //GestorPacientes gPacientes = new GestorPacientes();
+        //gPacientes.registrarPaciente();
+        GestorCitasMedicas gCitas = new GestorCitasMedicas();
+        gCitas.registrarCita();
+        
     }
     
 }
