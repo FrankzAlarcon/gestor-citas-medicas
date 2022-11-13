@@ -48,7 +48,13 @@ public class GestorCitasMedicas {
         med.add(in.nextLine());
         System.out.println("INGRESE CI DEL PACIENTE:");
         med.add(in.nextLine());
+        
+        //int a =Integer.parseInt(((String)med.get(0)).substring(5, 6));
+        //System.out.println(a);
 
+        
+        //nt anio = Integer.parseInt(((String)med.get(0)).substring(0, 3));
+        
         //dando valor a la instancia Cita
         this.cita = new Cita(LocalDateTime.of((Integer.parseInt(((String)med.get(0)).substring(0, 3))),
                 (Integer.parseInt(((String)med.get(0)).substring(5, 6))),(Integer.parseInt(((String)med.get(0)).substring(8, 9))),
