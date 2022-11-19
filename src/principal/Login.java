@@ -21,7 +21,7 @@ public class Login {
     private String contrasenia;
     private String tipoUsuario;
 
-    private AdministradorPersistencia adminPersistencia;
+    private AdministradorPersistencia adminPersistencia = new AdministradorPersistencia();
     
 
     public Login(String usuario, String contrasenia) {
