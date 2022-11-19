@@ -17,12 +17,10 @@ import principal.Medico;
 public class GestorMedicos {    
     private Medico medico;
     private GestorCitasMedicas gestorCitas;
-    
-    public GestorMedicos() {
-        this.gestorCitas = new GestorCitasMedicas();
-    }            
+        
     
     public void listarTodasLasCitas(){
+        this.gestorCitas = new GestorCitasMedicas();
         this.gestorCitas.obtenerTodasLasCitas();
     }
     

@@ -17,9 +17,14 @@ import principal.Cita;
  * @author Frankz
  */
 public class GestorCitasMedicas {    
-    private GestorMedicos gMedicos = new GestorMedicos();
-    private GestorPacientes gPacientes = new GestorPacientes();
+    private GestorMedicos gMedicos;
+    private GestorPacientes gPacientes;
     private Cita cita;
+    
+    public GestorCitasMedicas() {        
+        this.gMedicos = new GestorMedicos();
+        this.gPacientes = new GestorPacientes();
+    }
     
     public ArrayList<Cita> obtenerTodasLasCitas() {
         CitasPersistencia citaP = new CitasPersistencia();

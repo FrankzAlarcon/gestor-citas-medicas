@@ -32,11 +32,10 @@ public class main {
         Scanner in = new Scanner(System.in);
         System.out.println("=============================================");
         System.out.println("-------SISTEMA GESTOR DE CITAS MEDICAS-------");
-        System.out.println("=============================================");
-        Administrador admin = new Administrador("1250395702", "admin", 20, "admin@epn.edu.ec", "admin");
+        System.out.println("=============================================");        
+        Administrador admin = new Administrador("1250395702", "admin", 20, "admin@epn.edu.ec", "admin");        
         Login login = new Login(admin.getNombre(), admin.getContrasenia());
-        if (login.validarCredenciales()) {
-
+        if (login.validarCredenciales()) {            
             GestorCitasMedicas gCitas = new GestorCitasMedicas();
             GestorMedicos gMedicos = new GestorMedicos();
             GestorPacientes gPacientes = new GestorPacientes();
