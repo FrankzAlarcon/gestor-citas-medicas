@@ -37,11 +37,11 @@ public class CitasPersistencia {
             }
         }
     }
-    
+
     public ArrayList<Cita> recuperarCitas() {
         FileReader fileReader = null;
         BufferedReader br = null;
-        
+
         ArrayList<Cita> citas = new ArrayList<Cita>();
 
         GestorMedicos gestorMedicos = new GestorMedicos();
@@ -63,18 +63,7 @@ public class CitasPersistencia {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (fileReader != null) {
-                    fileReader.close();
-                }
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            ControladorBuffers.cerrarBuffers(fileReader, br);
         }
         return citas;
     }
@@ -105,18 +94,7 @@ public class CitasPersistencia {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (fileReader != null) {
-                    fileReader.close();
-                }
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            ControladorBuffers.cerrarBuffers(fileReader, br);
         }
         return cita;
     }
@@ -137,16 +115,7 @@ public class CitasPersistencia {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (fileWriter != null) {
-                    fileWriter.close();
-                }
-                if (bw != null) {
-                    bw.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
+            ControladorBuffers.cerrarBuffers(fileWriter, bw);
         }
     }
 
@@ -173,38 +142,23 @@ public class CitasPersistencia {
                 }
                 linea = br.readLine();
             }
-            
+
             fileWriter = new FileWriter(this.archivo);
             bw = new BufferedWriter(fileWriter);
-                        
-            for (Cita c: citas) {
+
+            for (Cita c : citas) {
                 System.out.println(c.toString());
                 bw.write(c.toString());
                 bw.newLine();
             }
             bw.close();
-            
+
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (fileWriter != null) {
-                    fileWriter.close();
-                }
-                if (bw != null) {
-                    bw.close();
-                }
-                if (fileReader != null) {
-                    fileReader.close();
-                }
-                if (br != null) {
-                    br.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
+            ControladorBuffers.cerrarBuffers(fileWriter, bw, fileReader, br);
         }
     }
 }

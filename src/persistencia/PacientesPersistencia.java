@@ -58,18 +58,7 @@ public class PacientesPersistencia {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (fileReader != null) {
-                    fileReader.close();
-                }
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            ControladorBuffers.cerrarBuffers(fileReader, br);
         }
         return paciente;
     }
@@ -91,16 +80,7 @@ public class PacientesPersistencia {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (fileWriter != null) {
-                    fileWriter.close();
-                }
-                if (bw != null) {
-                    bw.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
+            ControladorBuffers.cerrarBuffers(fileWriter, bw);
         }
     }
 
@@ -142,22 +122,7 @@ public class PacientesPersistencia {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (fileWriter != null) {
-                    fileWriter.close();
-                }
-                if (bw != null) {
-                    bw.close();
-                }
-                if (fileReader != null) {
-                    fileReader.close();
-                }
-                if (br != null) {
-                    br.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
+            ControladorBuffers.cerrarBuffers(fileWriter, bw, fileReader, br);
         }
     }
 
