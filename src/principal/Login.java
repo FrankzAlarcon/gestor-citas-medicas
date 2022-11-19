@@ -39,7 +39,9 @@ public class Login {
                 System.out.println("Acceso Denegado");
                 return false;
             }
-            if (admin.getCedula().equals(usuario) && admin.getContrasenia().equals(contrasenia)) {
+            boolean esUsuarioCorrecto = admin.getCedula().equals(usuario);
+            boolean esContraseniaCorrecta = admin.getContrasenia().equals(contrasenia);
+            if ( esUsuarioCorrecto && esContraseniaCorrecta) {
                 System.out.println("Acceso Exitoso");
                 return true;
             } else {
