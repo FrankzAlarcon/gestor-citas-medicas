@@ -38,7 +38,7 @@ public class CitasPersistencia {
         }
     }
     
-    public ArrayList<Cita> obtenerTodasLasCitas() {
+    public ArrayList<Cita> recuperarCitas() {
         FileReader fileReader = null;
         BufferedReader br = null;
         

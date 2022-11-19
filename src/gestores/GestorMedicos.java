@@ -14,13 +14,22 @@ import principal.Medico;
  *
  * @author Frankz
  */
-public class GestorMedicos {
-
-    Scanner in = new Scanner(System.in);
+public class GestorMedicos {    
     private Medico medico;
-
-    public void registrarMedico() {
-        ArrayList<Object> med = new ArrayList<Object>();
+    private GestorCitasMedicas gestorCitas;
+    
+    public GestorMedicos() {
+        this.gestorCitas = new GestorCitasMedicas();
+    }            
+    
+    public void listarTodasLasCitas(){
+        this.gestorCitas.obtenerTodasLasCitas();
+    }
+    
+    private ArrayList<String> recogerDatosMedico(){
+        Scanner in = new Scanner(System.in);
+        ArrayList<String> med = new ArrayList<String>();
+        
         System.out.println("INGRESE CI:");
         med.add(in.nextLine());
         System.out.println("INGRESE NOMBRE COMPLETO:");
@@ -31,10 +40,18 @@ public class GestorMedicos {
         med.add(in.nextLine());
         System.out.println("INGRESE SU CONTRASEÑA:");
         med.add(in.nextLine());
+        
+        return med;
+    }
+
+    public void registrarMedico() {
+        ArrayList<String> med = recogerDatosMedico();
 
         //dando valor a la instancia medico
-        this.medico = new Medico((String) med.get(0), (String) med.get(1),
-                Integer.parseInt((String)med.get(2)), (String) med.get(3), (String) med.get(4));
+        this.medico = new Medico(med.get(0), med.get(1),
+                Integer.parseInt(med.get(2)), 
+                med.get(3), med.get(4));
+        
         //llamado del metodo registrar
         this.medico.registrar();
     }

@@ -16,15 +16,14 @@ import principal.Cita;
  *
  * @author Frankz
  */
-public class GestorCitasMedicas {
-    Scanner in = new Scanner(System.in);
+public class GestorCitasMedicas {    
     private GestorMedicos gMedicos = new GestorMedicos();
     private GestorPacientes gPacientes = new GestorPacientes();
     private Cita cita;
     
     public ArrayList<Cita> obtenerTodasLasCitas() {
         CitasPersistencia citaP = new CitasPersistencia();
-        return citaP.obtenerTodasLasCitas();
+        return citaP.recuperarCitas();
     }
 
     public Cita obtenerCita(String idCita) {
@@ -36,25 +35,37 @@ public class GestorCitasMedicas {
         return cita;
     }
     
-     public void registrarCita() {
-        ArrayList<Object> med = new ArrayList<Object>();
+    private ArrayList<String> recogerDatosParaCita() {
+        Scanner in = new Scanner(System.in);
+        ArrayList<String> med = new ArrayList<String>();        
         System.out.println("INGRESE FECHA DE CONSULTA [aa/mm/dd/hh:min]:");
         med.add(in.nextLine());
         System.out.println("INGRESE ESPECIALIDAD:");
         med.add(in.nextLine());
         System.out.println("INGRESE DESCRIPCION:");
         med.add(in.nextLine());
-        System.out.println("INGRESE CI DEL MEDICO:"); //con el ci se encuentra y se obtiene el objeto medico desde el csv
+        //con el ci se encuentra y se obtiene el objeto medico desde el csv
+        System.out.println("INGRESE CI DEL MEDICO:"); 
         med.add(in.nextLine());
         System.out.println("INGRESE CI DEL PACIENTE:");
         med.add(in.nextLine());
         
+        return med;
+    }
+    
+     public void registrarCita() {
+        ArrayList<String> med = recogerDatosParaCita();
+        
         //dando valor a la instancia Cita
-        this.cita = new Cita(LocalDateTime.of((Integer.parseInt(((String)med.get(0)).substring(0, 3))),
-                (Integer.parseInt(((String)med.get(0)).substring(5, 6))),(Integer.parseInt(((String)med.get(0)).substring(8, 9))),
-        (Integer.parseInt(((String)med.get(0)).substring(11, 12))),(Integer.parseInt(((String)med.get(0)).substring(14, 15)))),
-                (String) med.get(1),(String) med.get(2),gMedicos.obtenerMedico((String)med.get(3)),
-                gPacientes.obtenerPaciente((String)med.get(4))); //Aqui hacer validacion de si existe el medico o paciente
+        this.cita = new Cita(LocalDateTime.of(
+                Integer.parseInt(med.get(0).substring(0, 3)),
+                (Integer.parseInt(med.get(0).substring(5, 6))),
+                (Integer.parseInt(med.get(0).substring(8, 9))),
+                (Integer.parseInt(med.get(0).substring(11, 12))),
+                (Integer.parseInt(med.get(0).substring(14, 15)))),
+                med.get(1), med.get(2),
+                gMedicos.obtenerMedico(med.get(3)),
+                gPacientes.obtenerPaciente(med.get(4))); 
         
         //llamado del metodo registrar
         this.cita.registrar();

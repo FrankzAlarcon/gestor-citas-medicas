@@ -52,8 +52,9 @@ public class main {
                 case 1:
                     // Refactor a admin.accederGestorCitas.regitrarCita
                     // Agregar -> Consultar historial de citas medicas
-                    // En los gestores -> Separar la logica de recoger datos en una funcion aparte
+                    // En los gestores -> Separar la logica de recoger datos en una funcion aparte (hecho en citas, medico)
                     // Quiza usar Introduce Explaining Variable en los condicionales (login especialmente)
+                    // Cambiar de asociacion entre gestor medicos y gestor citas medicas a solo una dependencia y usar el medoto listar todas las citas
                     gCitas.registrarCita();
                     break;
                 case 2:
