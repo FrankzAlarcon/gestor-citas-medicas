@@ -7,7 +7,7 @@
 ### Sistema Gestor de Citas Médicas para Institución Privada
 Esta aplicación, creada con Java, se utiliza para gestionar los médicos, pacientes y citas de una institución médica.
 Se recaba la siguiente información:
-> ###Médicos
+> ### Médicos
 
 - Cédula
 - Nombre
@@ -15,14 +15,14 @@ Se recaba la siguiente información:
 - Correo electrónico
 - Contraseña
 
-> ###Pacientes
+> ### Pacientes
 
 - Cédula
 - Nombre
 - Edad
 - Correo electrónico
 
-> ###Citas
+> ### Citas
 
 - Identificador único
 - Fecha
