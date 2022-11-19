@@ -52,52 +52,9 @@ public class Paciente {
         return cedula;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    /*public int getNumHistoriaClinica() {
-        return numHistoriaClinica;
-    }
-
-    public void setNumHistoriaClinica(int numHistoriaClinica) {
-        this.numHistoriaClinica = numHistoriaClinica;
-    }*/
-
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
-
-    
-    
     @Override
     public String toString() {
         return cedula + "," + nombre + "," + edad + "," + correoElectronico;
     }
-    
-    
-    
-    
-    
-    
+ 
 }

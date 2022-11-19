@@ -21,13 +21,13 @@ import java.util.ArrayList;
  */
 public class PacientesPersistencia {
 
-    private File file;
+    private File archivo;
 
     public PacientesPersistencia() {
-        this.file = new File("db/pacientes.txt");
-        if (!this.file.exists()) {
+        this.archivo = new File("db/pacientes.txt");
+        if (!this.archivo.exists()) {
             try {
-                this.file.createNewFile();
+                this.archivo.createNewFile();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 System.exit(0);
@@ -41,7 +41,7 @@ public class PacientesPersistencia {
         BufferedReader br = null;
         Paciente paciente = null;
         try {
-            fileReader = new FileReader(this.file);
+            fileReader = new FileReader(this.archivo);
             br = new BufferedReader(fileReader);
             String linea = br.readLine();
             while (linea != null) {
@@ -68,7 +68,7 @@ public class PacientesPersistencia {
         BufferedWriter bw = null;
         String linea = paciente.toString();
         try {
-            fileWriter = new FileWriter(this.file, true);
+            fileWriter = new FileWriter(this.archivo, true);
             bw = new BufferedWriter(fileWriter);
 
             bw.write(linea);
@@ -93,7 +93,7 @@ public class PacientesPersistencia {
 
         ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
         try {
-            fileReader = new FileReader(this.file);
+            fileReader = new FileReader(this.archivo);
             br = new BufferedReader(fileReader);
 
             String linea = br.readLine();
@@ -108,7 +108,7 @@ public class PacientesPersistencia {
                 linea = br.readLine();
             }
             
-            fileWriter = new FileWriter(this.file);
+            fileWriter = new FileWriter(this.archivo);
             bw = new BufferedWriter(fileWriter);
             
             for (Paciente p: pacientes) {                

@@ -147,7 +147,6 @@ public class CitasPersistencia {
             bw = new BufferedWriter(fileWriter);
 
             for (Cita c : citas) {
-                System.out.println(c.toString());
                 bw.write(c.toString());
                 bw.newLine();
             }

@@ -14,14 +14,12 @@ import persistencia.PacientesPersistencia;
  *
  * @author Frankz
  */
-public class GestorPacientes {
-
-    Scanner in = new Scanner(System.in);
+public class GestorPacientes {   
     private Paciente paciente;
 
-    public void registrarPaciente() {
-        //Obtencion de datos
-        ArrayList<Object> med = new ArrayList<Object>();
+    private ArrayList<String> recogerDatosPaciente() {
+        Scanner in = new Scanner(System.in);
+        ArrayList<String> med = new ArrayList<String>();
         System.out.println("INGRESE CI:");
         med.add(in.nextLine());
         System.out.println("INGRESE NOMBRE COMPLETO:");
@@ -30,10 +28,16 @@ public class GestorPacientes {
         med.add(in.nextLine());
         System.out.println("INGRESE SU CORREO ELECTRONICO:");
         med.add(in.nextLine());
+        return med;
+    }
+
+    public void registrarPaciente() {
+        //Obtencion de datos
+        ArrayList<String> med = recogerDatosPaciente();
 
         //dando valor a la instancia medico
-        this.paciente = new Paciente((String) med.get(0), (String) med.get(1),
-                Integer.parseInt((String)med.get(2)), (String) med.get(3));
+        this.paciente = new Paciente(med.get(0), med.get(1),
+                Integer.parseInt(med.get(2)), med.get(3));
         //llamado del metodo registrar
         this.paciente.registrar();
     }
