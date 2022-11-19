@@ -31,15 +31,6 @@ public class Login {
             System.out.println("Credenciales erroneas");
             return false;
         } else {
-            /*
-            if(tipoUsuario.equals("")){
-                System.out.println("Eliga el tipo de usuario");
-            }else{
-                /*if(usuario.equals(medicoPersistencia.nombreUsuario) && contrasenia.equals(medicoPersistencia.contrasenia)){
-                    System.out.println("Acceso Exitoso");
-                }else{
-                    System.out.println("Acceso Denegado");
-                }*/
             if (usuario.equals("admin") && contrasenia.equals("admin")) {
                 System.out.println("Acceso Exitoso");
                 return true;

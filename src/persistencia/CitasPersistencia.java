@@ -150,7 +150,7 @@ public class CitasPersistencia {
         }
     }
 
-    public void eliminarCita(Cita citaAEliminar) {
+    public void eliminarCita(Cita cita) {
         FileReader fileReader = null;
         BufferedReader br = null;
 
@@ -167,7 +167,7 @@ public class CitasPersistencia {
             String[] datosCita;
             while (linea != null) {
                 datosCita = linea.split(",");
-                if (!citaAEliminar.getId().equals(datosCita[0])) {
+                if (!cita.getId().equals(datosCita[0])) {
                     citaEncontrada = this.obtenerCita(datosCita[0]);
                     citas.add(citaEncontrada);
                 }

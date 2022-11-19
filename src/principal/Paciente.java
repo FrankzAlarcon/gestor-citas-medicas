@@ -5,7 +5,7 @@
  */
 package principal;
 
-import persistencia.PacientePersistencia;
+import persistencia.PacientesPersistencia;
 
 /**
  *
@@ -17,10 +17,10 @@ public class Paciente {
     private int edad;
     //private int numHistoriaClinica;
     private String correoElectronico;
-    private PacientePersistencia pacientePersistencia;
+    private PacientesPersistencia pacientePersistencia;
     
     public Paciente() {
-        this.pacientePersistencia = new PacientePersistencia();
+        this.pacientePersistencia = new PacientesPersistencia();
     }
 
     public Paciente(String cedula, String nombre, int edad, String correoElectronico) {
@@ -28,7 +28,7 @@ public class Paciente {
         this.nombre = nombre;
         this.edad = edad;        
         this.correoElectronico = correoElectronico;
-        this.pacientePersistencia = new PacientePersistencia();
+        this.pacientePersistencia = new PacientesPersistencia();
     }
     /*public Paciente(String cedula, String nombre, int edad, int numHistoriaClinica, String correoElectronico) {
         this.cedula = cedula;

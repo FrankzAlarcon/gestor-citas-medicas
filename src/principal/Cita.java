@@ -42,17 +42,7 @@ public class Cita {
         this.citaPersistencia = new CitasPersistencia();
         this.medico = medico;
         this.paciente = paciente;
-    }
-    
-    /*public Cita(Date fecha, Time hora, String especialidad, String descripcion, Medico medico, Paciente paciente) {
-        this.fecha = fecha;
-        this.hora = hora;
-        this.especialidad = especialidad;
-        this.descripcion = descripcion;
-        this.citaPersistencia = new CitaPersistencia();
-        this.medico = medico;
-        this.paciente = paciente;
-    }*/
+    }    
 
     public void registrar() {
         this.citaPersistencia.registrarCita(this);

@@ -102,7 +102,7 @@ public class MedicosPersistencia {
         }   
     }
 
-        public void eliminarMedico(Medico medicoAEliminar) {
+        public void eliminarMedico(Medico medico) {
         FileReader fileReader = null;
         BufferedReader br = null;
 
@@ -119,7 +119,7 @@ public class MedicosPersistencia {
             String[] datosMedico;
             while (linea != null) {
                 datosMedico = linea.split(",");
-                if (!medicoAEliminar.getCedula().equals(datosMedico[0])) {
+                if (!medico.getCedula().equals(datosMedico[0])) {
                     medicoEncontrado = new Medico(datosMedico[0], datosMedico[1], Integer.parseInt(datosMedico[2]), datosMedico[3], datosMedico[4]);
                     medicos.add(medicoEncontrado);
                 }

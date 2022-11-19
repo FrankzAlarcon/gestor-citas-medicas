@@ -19,11 +19,11 @@ import java.util.ArrayList;
  *
  * @author Frankz
  */
-public class PacientePersistencia {
+public class PacientesPersistencia {
 
     private File file;
 
-    public PacientePersistencia() {
+    public PacientesPersistencia() {
         this.file = new File("db/pacientes.txt");
         if (!this.file.exists()) {
             try {

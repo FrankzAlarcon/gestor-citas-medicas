@@ -8,7 +8,7 @@ package gestores;
 import java.util.ArrayList;
 import java.util.Scanner;
 import principal.Paciente;
-import persistencia.PacientePersistencia;
+import persistencia.PacientesPersistencia;
 
 /**
  *
@@ -39,7 +39,7 @@ public class GestorPacientes {
     }
 
     public Paciente obtenerPaciente(String cedula) {
-        PacientePersistencia pacienteP = new PacientePersistencia();
+        PacientesPersistencia pacienteP = new PacientesPersistencia();
         Paciente p = pacienteP.obtenerPaciente(cedula);
         if (p == null) {
             return null;
@@ -48,7 +48,7 @@ public class GestorPacientes {
     }
 
     public String eliminarPaciente(String cedula) {
-        PacientePersistencia pacienteP = new PacientePersistencia();
+        PacientesPersistencia pacienteP = new PacientesPersistencia();
         Paciente p = pacienteP.obtenerPaciente(cedula);
         if (p == null) {
             return "El usuario con cédula " + cedula + " no existe.";
