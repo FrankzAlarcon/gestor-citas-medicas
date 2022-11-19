@@ -65,7 +65,8 @@ public class main {
                     System.out.println("-------GESTION DE MEDICOS-------");
                     System.out.println("1. AÑADIR MEDICO");
                     System.out.println("2. ELIMINAR MEDICO");
-                    System.out.println("3. SALIR");
+                    System.out.println("3. MODIFICAR MEDICO");
+                    System.out.println("4. SALIR");
                     int opcMed = in.nextInt();
                     switch (opcMed) {
                         case 1:
@@ -77,6 +78,9 @@ public class main {
                             gMedicos.eliminarMedico(cedMed);
                             break;
                         case 3:
+                            gMedicos.modificarMedico();
+                            break;
+                        case 4:
                             System.out.println("Saliendo del sistema...");
                             break;
                         default:

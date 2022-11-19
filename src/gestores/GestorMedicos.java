@@ -72,4 +72,16 @@ public class GestorMedicos {
         medico.eliminar();
         return "Eliminado exitosamente.";
     }
+    
+    public String modificarMedico(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("INGRESE LA CEDULA DEL MEDICO A MODIFICAR");
+        String ci = in.nextLine();
+        Medico medico =this.obtenerMedico(ci);
+        if (medico == null) {
+            return "El medico con cédula " + ci + " no existe.";
+        }
+        medico.modificar();
+        return "La modificacion ha sido exitosa";
+    }
 }
