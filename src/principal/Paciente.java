@@ -34,38 +34,13 @@ public class Paciente {
         this.pacientePersistencia = new PacientesPersistencia();
     }
 
-    /*public Paciente(String cedula, String nombre, int edad, int numHistoriaClinica, String correoElectronico) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.edad = edad;
-        this.numHistoriaClinica = numHistoriaClinica;
-        this.correoElectronico = correoElectronico;
-        this.pacientePersistencia = new PacientePersistencia();
-    }*/
-
     public void registrar() {
         this.pacientePersistencia.registrarPaciente(this);
     }
 
-    public void modificar() {
-
-        Scanner in = new Scanner(System.in);
-
-        ArrayList<String> med = new ArrayList<String>();
-
-        System.out.println("=== INGRESE LOS CAMBIOS ===");
-        System.out.println("INGRESE NOMBRE COMPLETO:");
-        med.add(in.nextLine());
-        System.out.println("INGRESE SU EDAD:");
-        med.add(in.nextLine());
-        System.out.println("INGRESE SU CORREO ELECTRONICO:");
-        med.add(in.nextLine());
-
-        Paciente medico = new Paciente(this.cedula, med.get(0),
-                Integer.parseInt(med.get(1)), med.get(2));
-        
+    public void modificar(Paciente pacienteModificado) {
         this.eliminar();
-        medico.registrar();
+        pacienteModificado.registrar();
     }
 
     public void eliminar() {

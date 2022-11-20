@@ -14,7 +14,8 @@ import persistencia.PacientesPersistencia;
  *
  * @author Frankz
  */
-public class GestorPacientes {   
+public class GestorPacientes {
+
     private Paciente paciente;
 
     private ArrayList<String> recogerDatosPaciente() {
@@ -35,9 +36,6 @@ public class GestorPacientes {
         //Obtencion de datos
         ArrayList<String> med = recogerDatosPaciente();
 
-        //dando valor a la instancia medico
-        this.paciente = new Paciente(med.get(0), med.get(1),
-                Integer.parseInt(med.get(2)), med.get(3));
         //llamado del metodo registrar
         this.paciente.registrar();
     }
@@ -50,17 +48,37 @@ public class GestorPacientes {
         }
         return p;
     }
-    
-    public String modificarMedico(){
-        Scanner in = new Scanner(System.in);
-        System.out.println("INGRESE LA CEDULA DEL MEDICO A MODIFICAR");
-        String ci = in.nextLine();
-        Paciente paciente = this.obtenerPaciente(ci);
+
+    public String modificarPaciente(String cedula) {
+        Paciente paciente = this.obtenerPaciente(cedula);
+        System.out.println("Encontrado: " + paciente);
         if (paciente == null) {
-            return "El medico con cédula " + ci + " no existe.";
+            return "El medico con cédula " + cedula + " no existe.";
         }
-        paciente.modificar();
+        ArrayList<String> med = recogerDatosModificacion();
+        //dando valor a la instancia medico
+        Paciente pacienteModificado = new Paciente(paciente.getCedula(), med.get(0),
+                Integer.parseInt(med.get(1)), med.get(2));
+
+        paciente.modificar(pacienteModificado);
         return "La modificacion ha sido exitosa";
+    }
+
+    public ArrayList<String> recogerDatosModificacion() {
+        Scanner in = new Scanner(System.in);
+
+        ArrayList<String> med = new ArrayList<String>();
+
+        System.out.println("=== INGRESE LOS CAMBIOS ===");
+        System.out.println("INGRESE NOMBRE COMPLETO:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE SU EDAD:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE SU CORREO ELECTRONICO:");
+        med.add(in.nextLine());
+
+        return med;
+
     }
 
     public String eliminarPaciente(String cedula) {
