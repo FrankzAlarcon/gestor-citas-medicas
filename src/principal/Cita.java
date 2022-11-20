@@ -5,8 +5,12 @@
  */
 package principal;
 
+import gestores.GestorMedicos;
+import gestores.GestorPacientes;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 import persistencia.CitasPersistencia;
 
 /**
@@ -14,19 +18,19 @@ import persistencia.CitasPersistencia;
  * @author Frankz
  */
 public class Cita {
-   
+
     private String id;
-    private LocalDateTime fecha;    
+    private LocalDateTime fecha;
     private String especialidad;
     private String descripcion;
-    
+
     private CitasPersistencia citaPersistencia;
     private Medico medico;
     private Paciente paciente;
-    
+
     public Cita(String id, LocalDateTime fecha, String especialidad, String descripcion, Medico medico, Paciente paciente) {
         this.id = id;
-        this.fecha = fecha;        
+        this.fecha = fecha;
         this.especialidad = especialidad;
         this.descripcion = descripcion;
         this.citaPersistencia = new CitasPersistencia();
@@ -36,30 +40,65 @@ public class Cita {
 
     public Cita(LocalDateTime fecha, String especialidad, String descripcion, Medico medico, Paciente paciente) {
         this.id = Math.round(Math.random() * 10000000) + "";
-        this.fecha = fecha;        
+        this.fecha = fecha;
         this.especialidad = especialidad;
         this.descripcion = descripcion;
         this.citaPersistencia = new CitasPersistencia();
         this.medico = medico;
         this.paciente = paciente;
-    }    
+    }
 
     public void registrar() {
         this.citaPersistencia.registrarCita(this);
     }
-    
+
+    public void modificar() {
+
+        Scanner in = new Scanner(System.in);
+
+        ArrayList<String> med = new ArrayList<String>();
+
+        System.out.println("=== INGRESE LOS CAMBIOS ===");
+        System.out.println("INGRESE FECHA DE CONSULTA [aa/mm/dd/hh:min]:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE ESPECIALIDAD:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE DESCRIPCION:");
+        med.add(in.nextLine());
+        //con el ci se encuentra y se obtiene el objeto medico desde el csv
+        System.out.println("INGRESE CI DEL MEDICO:"); 
+        med.add(in.nextLine());
+        System.out.println("INGRESE CI DEL PACIENTE:");
+        med.add(in.nextLine());
+        
+        GestorMedicos gMedicos = new GestorMedicos();
+        GestorPacientes gPacientes = new GestorPacientes();
+
+        Cita cita = new Cita(LocalDateTime.of(
+                Integer.parseInt(med.get(0).substring(0, 3)),
+                (Integer.parseInt(med.get(0).substring(5, 6))),
+                (Integer.parseInt(med.get(0).substring(8, 9))),
+                (Integer.parseInt(med.get(0).substring(11, 12))),
+                (Integer.parseInt(med.get(0).substring(14, 15)))),
+                med.get(1), med.get(2),
+                gMedicos.obtenerMedico(med.get(3)),
+                gPacientes.obtenerPaciente(med.get(4)));
+
+        this.cancelar();
+        cita.registrar();
+    }
+
     public void cancelar() {
         this.citaPersistencia.eliminarCita(this);
     }
 
     @Override
     public String toString() {
-        return id + "," + fecha.toString() + "," + especialidad + "," + descripcion  + "," + medico.getCedula() + "," + paciente.getCedula();
+        return id + "," + fecha.toString() + "," + especialidad + "," + descripcion + "," + medico.getCedula() + "," + paciente.getCedula();
     }
-    
-    
+
     public String getId() {
         return this.id;
     }
-    
+
 }

@@ -75,6 +75,19 @@ public class GestorCitasMedicas {
         //llamado del metodo registrar
         this.cita.registrar();
     }
+     
+    public String modificarCita() {            
+        Scanner in = new Scanner(System.in);
+        System.out.println("INGRESE EL ID DE LA CITA A MODIFICAR");
+        String id = in.nextLine();
+        Cita cita = this.obtenerCita(id);
+        if (cita == null) {
+            return "El medico con cédula " + id + " no existe.";
+        }
+        System.out.println(cita);
+        cita.modificar();
+        return "La modificacion ha sido exitosa";    
+    }
     
 
     public String eliminarCita(String idCita) {

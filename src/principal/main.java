@@ -42,10 +42,11 @@ public class main {
 
             System.out.println("-------BIENVENIDO AL SISTEMA-------");
             System.out.println("1. AGENDAR CITA");
-            System.out.println("2. CANCELAR CITA");
-            System.out.println("3. GESTION MEDICOS");
-            System.out.println("4. GESTION PACIENTES");
-            System.out.println("5. SALIR");
+            System.out.println("2. MODIFICAR CITA");
+            System.out.println("3. CANCELAR CITA");
+            System.out.println("4. GESTION MEDICOS");
+            System.out.println("5. GESTION PACIENTES");
+            System.out.println("6. SALIR");
             int opc = Integer.parseInt(in.nextLine());
             switch (opc) {
                 case 1:
@@ -57,11 +58,15 @@ public class main {
                     gCitas.registrarCita();
                     break;
                 case 2:
+                    String mensajeCita = gCitas.modificarCita();
+                    System.out.println(mensajeCita);
+                    break;
+                case 3:
                     System.out.println("INGRESE EL ID DE LA CITA A ELIMINAR");
                     String id = in.nextLine();
                     System.out.println(gCitas.eliminarCita(id));
                     break;
-                case 3:
+                case 4:
                     System.out.println("-------GESTION DE MEDICOS-------");
                     System.out.println("1. AÑADIR MEDICO");
                     System.out.println("2. ELIMINAR MEDICO");
@@ -92,7 +97,7 @@ public class main {
                             break;
                     }
                     break;
-                case 4:
+                case 5:
                     System.out.println("-------GESTION DE PACIENTES-------");
                     System.out.println("1. AÑADIR PACIENTE");
                     System.out.println("2. MODIFICAR PACIENTE");
@@ -119,7 +124,7 @@ public class main {
                             break;
                     }
                     break;
-                case 5:
+                case 6:
                     System.out.println("Saliendo del sistema...");
                     break;
                 default:
