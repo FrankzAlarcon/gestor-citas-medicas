@@ -111,7 +111,11 @@ public class main {
                             gPacientes.registrarPaciente();
                             break;
                         case 2:
-                            gPacientes.modificarMedico();
+                            System.out.println("INGRESE LA CEDULA DEL PACIENTE A MODIFICAR");
+                            String cedula = in.next();
+                            in.nextLine();
+                            String mensaje = gPacientes.modificarPaciente(cedula);
+                            System.out.println(mensaje);
                             break;
                         case 3:
                             System.out.println("INGRESE LA CEDULA DEL PACIENTE A ELIMINAR");
