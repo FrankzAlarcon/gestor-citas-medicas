@@ -100,7 +100,7 @@ public class GestorCitasMedicas {
     public String modificarCita(String id) {
         Cita cita = this.obtenerCita(id);
         if (cita == null) {
-            return "El medico con cédula " + id + " no existe.";
+            return "La cita con id " + id + " no existe.";
         }
         System.out.println(cita);
         ArrayList<String> med = recogerDatosModificacion();
