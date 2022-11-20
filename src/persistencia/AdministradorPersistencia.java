@@ -28,7 +28,6 @@ public class AdministradorPersistencia {
             }
         }             
     }
-
     
     public Administrador obtenerAdministrador(String cedula) {        
         FileReader fileReader =  null;

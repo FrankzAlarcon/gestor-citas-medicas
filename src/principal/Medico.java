@@ -41,27 +41,9 @@ public class Medico {
         this.medicoPersistencia.eliminarMedico(this);
     }
 
-    public void modificar() {
-
-        Scanner in = new Scanner(System.in);
-
-        ArrayList<String> med = new ArrayList<String>();
-
-        System.out.println("=== INGRESE LOS CAMBIOS ===");
-        System.out.println("INGRESE NOMBRE COMPLETO:");
-        med.add(in.nextLine());
-        System.out.println("INGRESE SU EDAD:");
-        med.add(in.nextLine());
-        System.out.println("INGRESE SU CORREO ELECTRONICO:");
-        med.add(in.nextLine());
-        System.out.println("INGRESE SU CONTRASEÑA:");
-        med.add(in.nextLine());
-
-        Medico medico = new Medico(this.cedula, med.get(1),
-                Integer.parseInt(med.get(2)),
-                med.get(3), med.get(4));
+    public void modificar(Medico medicoModificado) {        
         this.eliminar();
-        medico.registrar();
+        medicoModificado.registrar();
     }
 
     public String getCedula() {

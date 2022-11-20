@@ -33,9 +33,9 @@ public class main {
         System.out.println("=============================================");
         System.out.println("-------SISTEMA GESTOR DE CITAS MEDICAS-------");
         System.out.println("=============================================");
-        Administrador admin = new Administrador("1234567890", "admin", 20, "admin@epn.edu.ec", "admin");        
+        Administrador admin = new Administrador("1234567890", "admin", 20, "admin@epn.edu.ec", "admin");
         Login login = new Login(admin.getCedula(), admin.getContrasenia());
-        if (login.validarCredenciales()) {            
+        if (login.validarCredenciales()) {
             GestorCitasMedicas gCitas = new GestorCitasMedicas();
             GestorMedicos gMedicos = new GestorMedicos();
             GestorPacientes gPacientes = new GestorPacientes();
@@ -78,7 +78,11 @@ public class main {
                             gMedicos.eliminarMedico(cedMed);
                             break;
                         case 3:
-                            gMedicos.modificarMedico();
+                            System.out.println("INGRESE LA CEDULA DEL MEDICO A MODIFICAR");
+                            String cedula = in.next();
+                            in.nextLine();
+                            String mensaje = gMedicos.modificarMedico(cedula);
+                            System.out.println(mensaje);
                             break;
                         case 4:
                             System.out.println("Saliendo del sistema...");

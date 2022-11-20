@@ -14,20 +14,20 @@ import principal.Medico;
  *
  * @author Frankz
  */
-public class GestorMedicos {    
+public class GestorMedicos {
+
     private Medico medico;
     private GestorCitasMedicas gestorCitas;
-        
-    
-    public void listarTodasLasCitas(){
+
+    public void listarTodasLasCitas() {
         this.gestorCitas = new GestorCitasMedicas();
         this.gestorCitas.obtenerTodasLasCitas();
     }
-    
-    private ArrayList<String> recogerDatosMedico(){
+
+    private ArrayList<String> recogerDatosMedico() {
         Scanner in = new Scanner(System.in);
         ArrayList<String> med = new ArrayList<String>();
-        
+
         System.out.println("INGRESE CI:");
         med.add(in.nextLine());
         System.out.println("INGRESE NOMBRE COMPLETO:");
@@ -38,7 +38,7 @@ public class GestorMedicos {
         med.add(in.nextLine());
         System.out.println("INGRESE SU CONTRASEÑA:");
         med.add(in.nextLine());
-        
+
         return med;
     }
 
@@ -47,9 +47,9 @@ public class GestorMedicos {
 
         //dando valor a la instancia medico
         this.medico = new Medico(med.get(0), med.get(1),
-                Integer.parseInt(med.get(2)), 
+                Integer.parseInt(med.get(2)),
                 med.get(3), med.get(4));
-        
+
         //llamado del metodo registrar
         this.medico.registrar();
     }
@@ -72,16 +72,35 @@ public class GestorMedicos {
         medico.eliminar();
         return "Eliminado exitosamente.";
     }
-    
-    public String modificarMedico(){
+
+    private ArrayList<String> recogerDatosModificacion() {
         Scanner in = new Scanner(System.in);
-        System.out.println("INGRESE LA CEDULA DEL MEDICO A MODIFICAR");
-        String ci = in.nextLine();
-        Medico medico =this.obtenerMedico(ci);
+        ArrayList<String> med = new ArrayList<String>();
+
+        System.out.println("=== INGRESE LOS CAMBIOS ===");
+        System.out.println("INGRESE NOMBRE COMPLETO:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE SU EDAD:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE SU CORREO ELECTRONICO:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE SU CONTRASEÑA:");
+        med.add(in.nextLine());
+
+        return med;
+    }
+
+    public String modificarMedico(String cedula) {
+        Medico medico = this.obtenerMedico(cedula);
+        System.out.println("Encontrado: " + medico);
         if (medico == null) {
-            return "El medico con cédula " + ci + " no existe.";
+            return "El medico con cédula " + cedula + " no existe.";
         }
-        medico.modificar();
+        ArrayList<String> med = recogerDatosModificacion();
+        Medico medicoModificado = new Medico(medico.getCedula(),
+                med.get(0), Integer.parseInt(med.get(1)),
+                med.get(2), med.get(3));
+        medico.modificar(medicoModificado);
         return "La modificacion ha sido exitosa";
     }
 }
