@@ -58,7 +58,9 @@ public class main {
                     gCitas.registrarCita();
                     break;
                 case 2:
-                    String mensajeCita = gCitas.modificarCita();
+                    System.out.println("INGRESE EL ID DE LA CITA A MODIFICAR");
+                    String idCita = in.nextLine();
+                    String mensajeCita = gCitas.modificarCita(idCita);
                     System.out.println(mensajeCita);
                     break;
                 case 3:

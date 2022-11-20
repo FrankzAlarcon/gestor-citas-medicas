@@ -16,16 +16,17 @@ import principal.Cita;
  *
  * @author Frankz
  */
-public class GestorCitasMedicas {    
+public class GestorCitasMedicas {
+
     private GestorMedicos gMedicos;
     private GestorPacientes gPacientes;
     private Cita cita;
-    
-    public GestorCitasMedicas() {        
+
+    public GestorCitasMedicas() {
         this.gMedicos = new GestorMedicos();
         this.gPacientes = new GestorPacientes();
     }
-    
+
     public ArrayList<Cita> obtenerTodasLasCitas() {
         CitasPersistencia citaP = new CitasPersistencia();
         return citaP.recuperarCitas();
@@ -39,10 +40,10 @@ public class GestorCitasMedicas {
         }
         return cita;
     }
-    
+
     private ArrayList<String> recogerDatosParaCita() {
         Scanner in = new Scanner(System.in);
-        ArrayList<String> med = new ArrayList<String>();        
+        ArrayList<String> med = new ArrayList<String>();
         System.out.println("INGRESE FECHA DE CONSULTA [aa/mm/dd/hh:min]:");
         med.add(in.nextLine());
         System.out.println("INGRESE ESPECIALIDAD:");
@@ -50,17 +51,17 @@ public class GestorCitasMedicas {
         System.out.println("INGRESE DESCRIPCION:");
         med.add(in.nextLine());
         //con el ci se encuentra y se obtiene el objeto medico desde el csv
-        System.out.println("INGRESE CI DEL MEDICO:"); 
+        System.out.println("INGRESE CI DEL MEDICO:");
         med.add(in.nextLine());
         System.out.println("INGRESE CI DEL PACIENTE:");
         med.add(in.nextLine());
-        
+
         return med;
     }
-    
-     public void registrarCita() {
+
+    public void registrarCita() {
         ArrayList<String> med = recogerDatosParaCita();
-        
+
         //dando valor a la instancia Cita
         this.cita = new Cita(LocalDateTime.of(
                 Integer.parseInt(med.get(0).substring(0, 3)),
@@ -70,25 +71,52 @@ public class GestorCitasMedicas {
                 (Integer.parseInt(med.get(0).substring(14, 15)))),
                 med.get(1), med.get(2),
                 gMedicos.obtenerMedico(med.get(3)),
-                gPacientes.obtenerPaciente(med.get(4))); 
-        
+                gPacientes.obtenerPaciente(med.get(4)));
+
         //llamado del metodo registrar
         this.cita.registrar();
     }
-     
-    public String modificarCita() {            
+
+    private ArrayList<String> recogerDatosModificacion() {
         Scanner in = new Scanner(System.in);
-        System.out.println("INGRESE EL ID DE LA CITA A MODIFICAR");
-        String id = in.nextLine();
+        ArrayList<String> med = new ArrayList<String>();
+
+        System.out.println("=== INGRESE LOS CAMBIOS ===");
+        System.out.println("INGRESE FECHA DE CONSULTA [aa/mm/dd/hh:min]:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE ESPECIALIDAD:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE DESCRIPCION:");
+        med.add(in.nextLine());
+        //con el ci se encuentra y se obtiene el objeto medico desde el csv
+        System.out.println("INGRESE CI DEL MEDICO:");
+        med.add(in.nextLine());
+        System.out.println("INGRESE CI DEL PACIENTE:");
+        med.add(in.nextLine());
+
+        return med;
+    }
+
+    public String modificarCita(String id) {
         Cita cita = this.obtenerCita(id);
         if (cita == null) {
             return "El medico con cédula " + id + " no existe.";
         }
         System.out.println(cita);
-        cita.modificar();
-        return "La modificacion ha sido exitosa";    
+        ArrayList<String> med = recogerDatosModificacion();
+        Cita citaModificada = new Cita(cita.getId(),
+                LocalDateTime.of(
+                Integer.parseInt(med.get(0).substring(0, 3)),
+                (Integer.parseInt(med.get(0).substring(5, 6))),
+                (Integer.parseInt(med.get(0).substring(8, 9))),
+                (Integer.parseInt(med.get(0).substring(11, 12))),
+                (Integer.parseInt(med.get(0).substring(14, 15)))),
+                med.get(1), med.get(2),
+                gMedicos.obtenerMedico(med.get(3)),
+                gPacientes.obtenerPaciente(med.get(4)));
+        cita.modificar(citaModificada);
+        return "La modificacion ha sido exitosa";
     }
-    
 
     public String eliminarCita(String idCita) {
         CitasPersistencia citaP = new CitasPersistencia();

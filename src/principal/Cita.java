@@ -52,38 +52,7 @@ public class Cita {
         this.citaPersistencia.registrarCita(this);
     }
 
-    public void modificar() {
-
-        Scanner in = new Scanner(System.in);
-
-        ArrayList<String> med = new ArrayList<String>();
-
-        System.out.println("=== INGRESE LOS CAMBIOS ===");
-        System.out.println("INGRESE FECHA DE CONSULTA [aa/mm/dd/hh:min]:");
-        med.add(in.nextLine());
-        System.out.println("INGRESE ESPECIALIDAD:");
-        med.add(in.nextLine());
-        System.out.println("INGRESE DESCRIPCION:");
-        med.add(in.nextLine());
-        //con el ci se encuentra y se obtiene el objeto medico desde el csv
-        System.out.println("INGRESE CI DEL MEDICO:"); 
-        med.add(in.nextLine());
-        System.out.println("INGRESE CI DEL PACIENTE:");
-        med.add(in.nextLine());
-        
-        GestorMedicos gMedicos = new GestorMedicos();
-        GestorPacientes gPacientes = new GestorPacientes();
-
-        Cita cita = new Cita(LocalDateTime.of(
-                Integer.parseInt(med.get(0).substring(0, 3)),
-                (Integer.parseInt(med.get(0).substring(5, 6))),
-                (Integer.parseInt(med.get(0).substring(8, 9))),
-                (Integer.parseInt(med.get(0).substring(11, 12))),
-                (Integer.parseInt(med.get(0).substring(14, 15)))),
-                med.get(1), med.get(2),
-                gMedicos.obtenerMedico(med.get(3)),
-                gPacientes.obtenerPaciente(med.get(4)));
-
+    public void modificar(Cita cita) {
         this.cancelar();
         cita.registrar();
     }
