@@ -50,6 +50,18 @@ public class GestorPacientes {
         }
         return p;
     }
+    
+    public String modificarMedico(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("INGRESE LA CEDULA DEL MEDICO A MODIFICAR");
+        String ci = in.nextLine();
+        Paciente paciente = this.obtenerPaciente(ci);
+        if (paciente == null) {
+            return "El medico con cédula " + ci + " no existe.";
+        }
+        paciente.modificar();
+        return "La modificacion ha sido exitosa";
+    }
 
     public String eliminarPaciente(String cedula) {
         PacientesPersistencia pacienteP = new PacientesPersistencia();

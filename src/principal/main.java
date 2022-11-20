@@ -91,19 +91,23 @@ public class main {
                 case 4:
                     System.out.println("-------GESTION DE PACIENTES-------");
                     System.out.println("1. AÑADIR PACIENTE");
-                    System.out.println("2. ELIMINAR PACIENTE");
-                    System.out.println("3. SALIR");
+                    System.out.println("2. MODIFICAR PACIENTE");
+                    System.out.println("3. ELIMINAR PACIENTE");
+                    System.out.println("4. SALIR");
                     int opcPac = in.nextInt();
                     switch (opcPac) {
                         case 1:
                             gPacientes.registrarPaciente();
                             break;
                         case 2:
+                            gPacientes.modificarMedico();
+                            break;
+                        case 3:
                             System.out.println("INGRESE LA CEDULA DEL PACIENTE A ELIMINAR");
                             String cedPac = in.nextLine();
                             gPacientes.eliminarPaciente(cedPac);
                             break;
-                        case 3:
+                        case 4:
                             System.out.println("Saliendo del sistema...");
                             break;
                         default:

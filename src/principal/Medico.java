@@ -48,7 +48,6 @@ public class Medico {
         ArrayList<String> med = new ArrayList<String>();
 
         System.out.println("=== INGRESE LOS CAMBIOS ===");
-
         System.out.println("INGRESE NOMBRE COMPLETO:");
         med.add(in.nextLine());
         System.out.println("INGRESE SU EDAD:");

@@ -41,7 +41,7 @@ public class Administrador {
     
     public GestorCitasMedicas accederGestorCitasMedicas(){
         return this.gestorCitas;
-    }      
+    }
 
     public String getCedula() {
         return cedula;
